@@ -19,19 +19,19 @@ define wireguard::interface (
   Variant[Array,String] $address,
   String                $private_key,
   Integer[1,65535]      $listen_port,
-  Enum['present','absent'] $ensure = 'present',
+  Enum['present', 'absent'] $ensure = 'present',
   Optional[Array[Struct[
     {
       'PublicKey'           => String,
       'AllowedIPs'          => Optional[String],
       'Endpoint'            => Optional[String],
       'PersistentKeepalive' => Optional[Integer],
-      'PostUp'              => Optional[String],
-      'PostDown'            => Optional[String],
     }
-  ]]]                   $peers        = [],
-  Boolean               $saveconfig   = true,
-  Stdlib::Absolutepath  $config_dir   = '/etc/wireguard',
+  ]]]                   $peers      = [],
+  Boolean               $saveconfig = true,
+  Optional[String]      $post_up    = undef,
+  Optional[String]      $post_down  = undef,
+  Stdlib::Absolutepath  $config_dir = '/etc/wireguard',
 ) {
 
   file {"${config_dir}/${name}.conf":

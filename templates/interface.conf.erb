@@ -10,6 +10,12 @@ Address = <%= @address %>
 <% if @saveconfig -%>
 SaveConfig = true
 <% end -%>
+<% if @post_up -%>
+PostUp = <%= @post_up %>
+<% end -%>
+<% if @post_down -%>
+PostDown = <%= @post_down %>
+<% end -%>
 PrivateKey = <%= @private_key %>
 ListenPort = <%= @listen_port %>
 <%- if @peers -%>
